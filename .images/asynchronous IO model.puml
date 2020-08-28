@@ -1,0 +1,19 @@
+@startuml
+scale 1.1
+title Asynchronous I/O model
+hide footbox
+skinparam monochrome true
+skinparam defaultFontName Source Sans Pro
+skinparam titleFontSize 15
+skinparam sequenceMessageAlign center
+
+activate application
+application->kernel: operation\ninitiation
+activate kernel
+Note right of kernel: wait for data
+Note right of kernel: copy data
+kernel->application: completion\ncallback
+deactivate kernel
+
+||26||
+@enduml

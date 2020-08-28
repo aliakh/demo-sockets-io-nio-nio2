@@ -1,0 +1,36 @@
+@startuml
+scale 1.1
+title Non-blocking I/O model
+hide footbox
+skinparam monochrome true
+skinparam defaultFontName Source Sans Pro
+skinparam titleFontSize 15
+skinparam sequenceMessageAlign center
+
+activate application
+application->>kernel: reading data
+deactivate application
+activate kernel
+kernel-->>application: error code
+deactivate kernel
+activate application
+
+application->>kernel: reading data
+deactivate application
+activate kernel
+kernel-->>application: error code
+deactivate kernel
+activate application
+
+... data are available ...
+
+application->>kernel: reading data
+deactivate application
+activate kernel
+Note right of kernel: copy data
+kernel-->>application: data
+deactivate kernel
+activate application
+
+||12||
+@enduml

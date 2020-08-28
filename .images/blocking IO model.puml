@@ -1,0 +1,22 @@
+@startuml
+scale 1.1
+title Blocking I/O model
+hide footbox
+skinparam monochrome true
+skinparam defaultFontName Source Sans Pro
+skinparam titleFontSize 15
+skinparam sequenceMessageAlign center
+
+activate application
+application->>kernel: reading data
+deactivate application
+activate kernel
+Note right of kernel: wait for data
+Note right of kernel: copy data
+kernel-->>application: data
+deactivate kernel
+activate application
+
+||1||
+kernel -[#white]->]
+@enduml

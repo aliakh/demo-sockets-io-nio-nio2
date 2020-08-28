@@ -1,0 +1,24 @@
+@startuml
+title Signal-driven I/O model
+scale 1.1
+hide footbox
+skinparam monochrome true
+skinparam defaultFontName Source Sans Pro
+skinparam titleFontSize 15
+skinparam sequenceMessageAlign center
+activate application
+
+application->kernel: handler\nestablishing
+activate kernel
+Note right of kernel: wait for data
+kernel->application: signal
+application->>kernel: reading data
+deactivate application
+Note right of kernel: copy data
+kernel-->>application: data
+deactivate kernel
+activate application
+
+||14||
+kernel -[#white]->]
+@enduml
